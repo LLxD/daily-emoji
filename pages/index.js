@@ -1,27 +1,26 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import {useState, useEffect} from 'react'
-
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useState, useEffect } from "react";
+import "animate.css";
 
 export default function Home() {
+  const UrlToFetch = "https://emojihub.herokuapp.com/api/all";
 
-  const UrlToFetch = 'https://emojihub.herokuapp.com/api/all'
-
-  const [emoji, setEmoji] = useState([{htmlCode:""}])
+  const [emoji, setEmoji] = useState([{ htmlCode: "" }]);
 
   const fetchEmoji = async () => {
-    const fetchedEmojiArray = fetch(UrlToFetch).then((res) => res.json())
-    return fetchedEmojiArray
-  }
+    const fetchedEmojiArray = fetch(UrlToFetch).then((res) => res.json());
+    return fetchedEmojiArray;
+  };
 
   useEffect(() => {
     async function fetchData() {
-      const myEmojis = await fetchEmoji()
-      setEmoji(myEmojis)
-      console.log(emoji)
+      const myEmojis = await fetchEmoji();
+      setEmoji(myEmojis);
+      console.log(emoji);
     }
-    fetchData()
-  }, [])
+    fetchData();
+  }, [emoji]);
   return (
     <div className={styles.container}>
       <Head>
@@ -34,23 +33,22 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <p className={styles.description} dangerouslySetInnerHTML={{__html: emoji[0].htmlCode}}></p>
+        <p
+          className={
+            styles.description +
+            " animate__animated animate__tada animate__delay-4s"
+          }
+          dangerouslySetInnerHTML={{ __html: emoji[0].htmlCode }}
+        ></p>
 
-        <div className={styles.grid}>
-
-        </div>
+        <div className={styles.grid}></div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="http://www.llxd.ml"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Check me out {' '}
-
+        <a href="http://www.llxd.ml" target="_blank" rel="noopener noreferrer">
+          Check me out{" "}
         </a>
       </footer>
     </div>
-  )
+  );
 }
