@@ -55,7 +55,7 @@ export default function Home() {
             onClick={() => setWantToSee(true)}
             className={styles.title}
           >
-            What's my daily emoji?
+            What&apos;s my daily emoji?
           </h1>
         )}
       </main>

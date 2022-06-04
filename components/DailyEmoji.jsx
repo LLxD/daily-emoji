@@ -27,7 +27,7 @@ const DailyEmoji = ({ isLoaded, randomEmoji, getRandomEmoji }) => {
       setTimeLeft((timeLeft) => timeLeft - 1);
     }, 333);
     return () => clearInterval(intervalId);
-  }, [timeLeft]);
+  }, [getRandomEmoji, loadingEmojis, timeLeft]);
 
   return (
     <div>
