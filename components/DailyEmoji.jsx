@@ -7,16 +7,15 @@ const DailyEmoji = ({ isLoaded, randomEmoji, getRandomEmoji }) => {
   const [finishedAnimation, setFinishedAnimation] = useState(false);
   const [timeLeft, setTimeLeft] = useState(5);
 
-  const loadingEmojis = [
-    { htmlCode: ["&#129315;"] },
-    { htmlCode: ["&#128538;"] },
-    { htmlCode: ["&#128071;"] },
-    { htmlCode: ["&#9996;"] },
-    { htmlCode: ["&#129310;"] },
-    { htmlCode: ["&#128406;"] },
-  ];
-
   useEffect(() => {
+    const loadingEmojis = [
+      { htmlCode: ["&#129315;"] },
+      { htmlCode: ["&#128538;"] },
+      { htmlCode: ["&#128071;"] },
+      { htmlCode: ["&#9996;"] },
+      { htmlCode: ["&#129310;"] },
+      { htmlCode: ["&#128406;"] },
+    ];
     if (timeLeft === 0) {
       setFinishedAnimation(true);
       setTimeLeft(null);
@@ -27,7 +26,7 @@ const DailyEmoji = ({ isLoaded, randomEmoji, getRandomEmoji }) => {
       setTimeLeft((timeLeft) => timeLeft - 1);
     }, 333);
     return () => clearInterval(intervalId);
-  }, [getRandomEmoji, loadingEmojis, timeLeft]);
+  }, [getRandomEmoji, timeLeft]);
 
   return (
     <div>

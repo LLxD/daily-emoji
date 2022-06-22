@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import "animate.css";
 import DailyEmoji from "../components/DailyEmoji";
+import ReactTooltip from "react-tooltip";
 
 export default function Home() {
   const UrlToFetch =
@@ -32,6 +33,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchEmoji();
+    let tooltip = document.querySelector("[data-tip]");
+    ReactTooltip.show(tooltip);
   }, []);
 
   return (
@@ -50,13 +53,23 @@ export default function Home() {
             getRandomEmoji={getRandomEmoji}
           />
         ) : (
-          <h1
-            style={{ cursor: "pointer" }}
-            onClick={() => setWantToSee(true)}
-            className={styles.title}
-          >
-            What&apos;s my daily emoji?
-          </h1>
+          <>
+            <h1
+              style={{ cursor: "pointer" }}
+              onClick={() => setWantToSee(true)}
+              className={styles.title}
+              data-tip="Click here!"
+            >
+              What&apos;s my daily emoji?
+            </h1>
+            <ReactTooltip
+              type="light"
+              place="bottom"
+              offset={{ bottom: "10px" }}
+              effect="solid"
+              delayShow={1000}
+            />
+          </>
         )}
       </main>
     </div>
